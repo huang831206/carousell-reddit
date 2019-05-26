@@ -89,7 +89,7 @@ export default {
                 type: type
             }
 
-            fetch('http://localhost:3000/post/vote', {
+            fetch(process.env.VUE_APP_API_BASE_URL+'/post/vote', {
                 method: 'POST',
                 headers: {
                    'content-type': 'application/json'

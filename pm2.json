@@ -1,0 +1,25 @@
+{
+    "apps": [
+        {
+            "name": "carousell-reddit",
+            "script": "backend/server.js",
+            "watch": true,
+            "append_env_to_name": true,
+            "ignore_watch" : [
+                "node_modules",
+                "pm2.json",
+                ".idea",
+                ".git"
+            ],
+            "log_date_format": "YYYY-MM-DDTHH:mm:ssZ",
+            "env": {
+                "NODE_ENV": "development",
+                "PORT": 3000
+            },
+            "env_production": {
+                "NODE_ENV": "production",
+                "PORT": 8000
+            }
+        }
+    ]
+}

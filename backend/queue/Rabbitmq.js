@@ -4,7 +4,7 @@ const amqp = require('amqplib')
 class Rabbitmq extends BaseQueue{
     constructor() {
         super()
-        this.config = require('../config.json') || {}
+        this.config = require('../ConfigLoader.js') || {}
         this.host = this.config.queues.rabbitmq.host || 'amqp://localhost'
         this.name = this.config.queues.rabbitmq.name || 'vote_queue'
     }

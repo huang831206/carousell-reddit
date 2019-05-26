@@ -1,4 +1,5 @@
 {
+    "port": 8000,
     "queues" : {
         "rabbitmq" : {
             "name" : "vote_queue",

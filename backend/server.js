@@ -1,6 +1,4 @@
-var config = {
-    port: 3000
-}
+var config = require('./ConfigLoader.js')
 
 var cors = require('cors')
 var express = require('express')

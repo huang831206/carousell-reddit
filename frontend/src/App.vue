@@ -9,6 +9,7 @@
         </div>
         <div class="posts-container">
             <!-- i for indicating it's rank -->
+            <div v-if="!posts.length"><h3>Nothing here</h3></div>
             <Post v-for="(post,index) in posts" :post="post" :key="post.id" :i="index"></Post>
         </div>
         <div class="new-post-container">
@@ -63,7 +64,8 @@ export default {
 
     methods: {
         getPosts(){
-            fetch(this.toggleAllPost ? 'http://localhost:3000/post/all' : 'http://localhost:3000/post/trendings')
+            let apiBase = process.env.VUE_APP_API_BASE_URL
+            fetch(this.toggleAllPost ? apiBase + '/post/all' : apiBase + '/post/trendings')
                 .then( res => res.json())
                 .then( res => {
                     this.posts = res
@@ -83,7 +85,7 @@ export default {
                     content: encodeURIComponent(this.newPostContent),
                 }
 
-                fetch('http://localhost:3000/post/create', {
+                fetch(process.env.VUE_APP_API_BASE_URL + '/post/create', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

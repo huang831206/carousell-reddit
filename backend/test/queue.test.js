@@ -1,8 +1,10 @@
 import test from 'ava';
 
+/*** test the Rabbitmq.js module itself ***/
+
 test('test rabbitmq', async t => {
     const amqp = require('amqplib')
-    let config = require('../config.json') || {}
+    let config = require('../ConfigLoader.js') || {}
     let host = config.queues.rabbitmq.host || 'amqp://localhost'
     let name = config.queues.rabbitmq.name || 'vote_queue'
 
@@ -46,3 +48,19 @@ test('test rabbitmq', async t => {
     })
 
 })
+
+/******/
+
+
+/*** test if MessageQueue.js can load providers successfully ***/
+
+test('test mq loader', t => {
+    let MQ = require('../MessageQueue.js')
+    let providerInstance = new MQ().use('rabbitmq')
+    let Rabbitmq = require('../queue/Rabbitmq.js')
+
+    t.true(providerInstance instanceof Rabbitmq)
+})
+
+/******/
+
