@@ -7,6 +7,19 @@
             <!-- i for indicating it's rank -->
             <Post v-for="(post,index) in posts" :post="post" :key="post.id" :i="index"></Post>
         </div>
+        <div class="new-post-container">
+            <div class="name">
+                <label for="post-author">name</label>
+                <input type="text" id="post-author" name="author">
+            </div>
+            <div class="content">
+                <label for="">content</label>
+                <textarea type="text" id="post-content" name="content"></textarea>
+            </div>
+            <div class="submit-button">
+                <button>Submit</button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -79,5 +92,52 @@ export default {
             border-radius: 4px;
         }
 
+        div.new-post-container{
+            display: flex;
+            height: 13%;
+
+            div.name{
+                width: 15%;
+                padding: 0 30px;
+                margin: auto;
+            }
+
+            div.content{
+                width: 65%;
+                padding: 0 30px;
+                margin: auto;
+            }
+
+            div.submit-button{
+                width: 20%;
+                margin: auto;
+
+                button{
+                    cursor: pointer;
+                    color: #fff;
+                    background-color: #007bff;
+                    border-color: #007bff;
+                    font-weight: 400;
+                    padding: .375rem .75rem;
+                    line-height: 1.5;
+                    border-radius: .25rem;
+                    font-size: 1rem;
+                }
+            }
+
+            input, textarea{
+                width: 100%;
+                height: calc(1.5em + .75rem + 2px);
+                border-radius: .25rem;
+                font-weight: 400;
+                line-height: 1.5;
+                border: 1px solid #ced4da;
+            }
+
+            textarea{
+                resize : none;
+                height: calc(3rem + 2px);
+            }
+        }
     }
 </style>
