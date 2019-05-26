@@ -95,7 +95,7 @@ export default {
                 type: type
             }
 
-            fetch('http://localhost:3000/vote', {
+            fetch('http://localhost:3000/post/vote', {
                 method: 'POST',
                 headers: {
                    'content-type': 'application/json'
@@ -104,6 +104,10 @@ export default {
             })
             .then( res => res.json())
             .then(callback)
+            .then( () =>{ 
+                location.reload()
+            })
+            
             .catch( err => {
                 // eslint-disable-next-line
                 console.warn(err)
@@ -119,13 +123,13 @@ export default {
     .post-block{
         position: relative;
         margin: 40px 60px;
-        padding-left: 60px;
+        padding-left: 75px;
         border: 1px solid #cccccc;
         border-radius: 4px;
 
         .rank{
             position: absolute;
-            width: 20px;
+            width: 35px;
             height: 100%;
             align-items: center;
             display: flex;
@@ -146,7 +150,7 @@ export default {
             height: 100%;
             align-items: center;
             display: flex;
-            left: 20px;
+            left: 35px;
             background-color: #f8f9fa;
 
             .vote-buttons{

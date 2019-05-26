@@ -1,7 +1,11 @@
 <template>
     <div id="app">
+        <div class="toggle-all">
+            <input type="checkbox" id="toggle-all-post" v-model="toggleAllPost">
+            <label for="toggle-all-post">Toggle all posts</label>
+        </div>
         <div class="header">
-            <h1>Top 20 Popular Posts</h1>
+            <h1>{{ toggleAllPost ? 'All Posts' : 'Top 20 Popular Posts'}}</h1>
         </div>
         <div class="posts-container">
             <!-- i for indicating it's rank -->
@@ -38,6 +42,7 @@ export default {
     data(){
         // some dummy data
         return {
+            toggleAllPost: (localStorage.toggleAllPost === 'true'),
             posts: [
                 {
                     id: 'p1',
@@ -71,18 +76,30 @@ export default {
     },
 
     created(){
-        fetch('http://localhost:3000/trendings')
-            .then( res => res.json())
-            .then( res => {
-                this.posts = res
-            })
-            .catch( err => {
-                // eslint-disable-next-line
-                console.warn(err)
-            })
+        this.getPosts()
+    },
+
+    watch:{
+        toggleAllPost: function (toggle) {
+            this.toggleAllPost = toggle
+            localStorage.toggleAllPost = toggle
+            this.getPosts()
+        }
     },
 
     methods: {
+        getPosts(){
+            fetch(this.toggleAllPost ? 'http://localhost:3000/post/all' : 'http://localhost:3000/post/trendings')
+                .then( res => res.json())
+                .then( res => {
+                    this.posts = res
+                })
+                .catch( err => {
+                    // eslint-disable-next-line
+                    console.warn(err)
+                })
+        },
+
         createPost(){
   
             if (this.newPostAuthor && this.newPostTitle && this.newPostContent) {
@@ -92,7 +109,7 @@ export default {
                     content: encodeURIComponent(this.newPostContent),
                 }
 
-                fetch('http://localhost:3000/new', {
+                fetch('http://localhost:3000/post/create', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -100,6 +117,9 @@ export default {
                     body: JSON.stringify(data)
                 })
                     .then( res => res.json())
+                    .then( () =>{ 
+                        location.reload()
+                    })
                     .catch( err => {
                         // eslint-disable-next-line
                         console.warn(err)
@@ -126,6 +146,13 @@ export default {
         text-align: center;
         color: #2c3e50;
         height: 100%;
+
+        div.toggle-all{
+            position: fixed;
+            top: 0;
+            right: 0;
+            margin: 20px 20px 0 0;
+        }
 
         div.header{
             height: 7%;
