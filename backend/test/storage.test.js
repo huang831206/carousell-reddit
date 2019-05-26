@@ -3,7 +3,7 @@ import test from 'ava';
 /*** test the MemoryStorage.js module itself ***/
 
 test('test memory storage: insert', t => {
-    const MS = require('../../backend/storage/MemoryStorage.js')
+    const MS = require('../storage/MemoryStorage.js')
     const ms = new MS()
     let obj = {a: 1, b: '2'}
     let id = ms.insert(obj)
@@ -12,7 +12,7 @@ test('test memory storage: insert', t => {
 })
 
 test('test memory storage: select', t => {
-    const MS = require('../../backend/storage/MemoryStorage.js')
+    const MS = require('../storage/MemoryStorage.js')
     const ms = new MS()
     let obj = {a: 1, b: '2'}
     let id = ms.insert(obj)
@@ -21,7 +21,7 @@ test('test memory storage: select', t => {
 })
 
 test('test memory storage: select all', t => {
-    const MS = require('../../backend/storage/MemoryStorage.js')
+    const MS = require('../storage/MemoryStorage.js')
     const ms = new MS()
     let obj1 = {a: 1, b: '2'}
     let obj2 = {a: 345, b: '678'}
@@ -32,7 +32,7 @@ test('test memory storage: select all', t => {
 })
 
 test('test memory storage: selectIn', t => {
-    const MS = require('../../backend/storage/MemoryStorage.js')
+    const MS = require('../storage/MemoryStorage.js')
     const ms = new MS()
     let obj1 = {a: 1, b: '2'}
     let obj2 = {a: 345, b: '678'}
@@ -48,9 +48,9 @@ test('test memory storage: selectIn', t => {
 /*** test if DB.js can load providers successfully ***/
 
 test('test db loader', t => {
-    let DB = require('../../backend/DB.js')
+    let DB = require('../DB.js')
     let providerInstance = new DB().use('memory')
-    let MemoryStorage = require('../../backend/storage/MemoryStorage.js')
+    let MemoryStorage = require('../storage/MemoryStorage.js')
 
     t.true(providerInstance instanceof MemoryStorage)
 })
