@@ -9,7 +9,7 @@
                     <i class="far fa-thumbs-up"></i>
                 </button>
                 <div class="votes-count">
-                    {{ post.votesCount }}
+                    {{ post.upVotes }}
                 </div>
                 <button class="vote-down" @click="voteDown">
                     <i class="far fa-thumbs-down"></i>
@@ -18,18 +18,18 @@
         </div>
         <div class="post">
             <div class="post-author">
-                <span>Posted by : {{ post.author }}</span>
+                <span>Posted by : {{ decodeURIComponent(post.author) }}</span>
                 <a :href="post.authorURL"></a>
             </div>
             <div class="post-title">
                 <span>
                     <a href="">
-                        <h2>{{ post.title }}</h2>
+                        <h2>{{ decodeURIComponent(post.title) }}</h2>
                     </a>
                 </span>
             </div>
             <div class="post-content">
-                <p>{{ post.content }}</p>
+                <p>{{ decodeURIComponent(post.content) }}</p>
             </div>
         </div>
     </div>
@@ -74,12 +74,41 @@ export default {
         voteUp(){
             // do vote up request
             // location.reload()
+            this.voteAction('upVotes', (res) => {
+                // eslint-disable-next-line
+                console.log(res)
+            })
         },
 
         voteDown(){
             // do vote down request
             // location.reload()
+            this.voteAction('downVotes', (res) => {
+                // eslint-disable-next-line
+                console.log(res)
+            })
         },
+
+        voteAction(type, callback){
+            let data = {
+                id: this.post.id,
+                type: type
+            }
+
+            fetch('http://localhost:3000/vote', {
+                method: 'POST',
+                headers: {
+                   'content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then( res => res.json())
+            .then(callback)
+            .catch( err => {
+                // eslint-disable-next-line
+                console.warn(err)
+            })
+        }
 
     },
 
