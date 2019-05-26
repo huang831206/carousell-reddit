@@ -9,7 +9,9 @@ var router = function(app) {
     })
 
     // get trending post list
-    app.get('/post/trending', post.trending)
+    app.get('/post/trendings', post.trendings)
+    // get all posts
+    app.get('/post/all', post.all)
     // vote for a post
     app.post('/post/vote', post.vote)
     // create a new post
