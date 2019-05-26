@@ -24,7 +24,6 @@ class Rabbitmq extends BaseQueue{
                 return ch.assertQueue(q, { durable: false })
                          .then( ok => {
                              let data = JSON.stringify(item)
-                             console.log('Sent data:', data)
                              return ch.sendToQueue(q, Buffer.from(data))
                          })
                          .catch( err => {
@@ -53,7 +52,6 @@ class Rabbitmq extends BaseQueue{
                                     let data = JSON.parse(msg.content.toString())
                                     // update upVotes/downVotes for the post
                                     storage.update(data.id, data.type)
-                                    console.log('received:', msg.content.toString())
                                     
                                     let p = storage.select(data.id)
                                     // if this post is now more popular than the last of trending posts

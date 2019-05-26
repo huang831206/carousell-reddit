@@ -31,7 +31,6 @@ post.vote = function (req, res) {
 // create a new post
 post.create = function (req, res) {
     let data = req.body;
-    console.log(data)
     // init votes count
     data.upVotes = 0
     data.downVotes = 0

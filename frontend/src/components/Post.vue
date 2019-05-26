@@ -74,19 +74,13 @@ export default {
         voteUp(){
             // do vote up request
             // location.reload()
-            this.voteAction('upVotes', (res) => {
-                // eslint-disable-next-line
-                console.log(res)
-            })
+            this.voteAction('upVotes', () => {})
         },
 
         voteDown(){
             // do vote down request
             // location.reload()
-            this.voteAction('downVotes', (res) => {
-                // eslint-disable-next-line
-                console.log(res)
-            })
+            this.voteAction('downVotes', () => {})
         },
 
         voteAction(type, callback){
@@ -107,7 +101,6 @@ export default {
             .then( () =>{ 
                 location.reload()
             })
-            
             .catch( err => {
                 // eslint-disable-next-line
                 console.warn(err)

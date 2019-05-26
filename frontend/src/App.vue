@@ -40,35 +40,9 @@ export default {
         Post
     },
     data(){
-        // some dummy data
         return {
             toggleAllPost: (localStorage.toggleAllPost === 'true'),
-            posts: [
-                {
-                    id: 'p1',
-                    title: 'post1',
-                    author: 'ben1',
-                    authorURL: 'ben1',
-                    votesCount: 999,
-                    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque deserunt ipsam iure laboriosam expedita tempora totam, animi in dolorem vero. At, mollitia. Similique debitis aliquam, laudantium magni corporis et excepturi.',
-                },
-                {
-                    id: 'p2',
-                    title: 'post2',
-                    author: 'ben2',
-                    authorURL: 'ben2',
-                    votesCount: 99,
-                    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque deserunt ipsam iure laboriosam expedita tempora totam, animi in dolorem vero. At, mollitia. Similique debitis aliquam, laudantium magni corporis et excepturi.',
-                },
-                {
-                    id: 'p3',
-                    title: 'post3',
-                    author: 'ben3',
-                    authorURL: 'ben3',
-                    votesCount: 9,
-                    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque deserunt ipsam iure laboriosam expedita tempora totam, animi in dolorem vero. At, mollitia. Similique debitis aliquam, laudantium magni corporis et excepturi.',
-                }
-            ],
+            posts: [],
             newPostAuthor: '',
             newPostTitle: '',
             newPostContent: '',
