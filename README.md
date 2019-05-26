@@ -1,9 +1,34 @@
 # Carousell reddit clone
 
+This is for Carousell Code exercise. (make a reddit clone for up/down votes)
+The frontend and backend are separated, and they can be deployed so.
+You need to install npm packages for both: run `npm install` in both `frontend` and `backend`
+The test locates outside, run `npm install` to install `ava` and `npm run test` to test.
+
+- This app uses `rabbitmq`, so you need to install it first
+see [https://www.rabbitmq.com/download.html]
+
+- To build frontend in production
+```
+cd frontend
+npm run build
+```
+this will create a `dist/` folder in `frontend/`
+
+- To run production server, pm2 is recommended
+install pm2 `npm install pm2 -g`
+run `pm2 start pm2.json --env production` to start server
+
 ## frontend
+Boilerplate created via `vue-cli`.
+It's very simple, There's only one component in app.(Post)
+### env
+The app loads `frontend/.env.production` by default. If you wish to make a dev env, create a `frontend/.env.development.local`
 
 
 ## backend
+The server loads config by `NODE_ENV` which is provided by pm2 in `pm2.json`.
+
 ### storage
 The implementation of storages.
 Try to reduce the trouble to swap storage options. So `BaseStorage.js` is more like a interface or template, regulating what should be done to provide storage functionality.
