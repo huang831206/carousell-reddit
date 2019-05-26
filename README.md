@@ -5,17 +5,21 @@ The frontend and backend are separated, and they can be deployed so.
 You need to install npm packages for both: run `npm install` in both `frontend` and `backend`
 The test locates outside, run `npm install` to install `ava` and `npm run test` to test.
 
-- This app uses `rabbitmq`, so you need to install it first
+1. This app uses `rabbitmq`, so you need to install it first
 see [https://www.rabbitmq.com/download.html]
 
-- To build frontend in production
+2. create `.env.production` under `frontend`. The file contains
+`VUE_APP_API_BASE_URL=http://localhost:3000`
+where you can replace it with your real server host and port
+
+3. To build frontend in production
 ```
 cd frontend
 npm run build
 ```
 this will create a `dist/` folder in `frontend/`
 
-- To run production server, pm2 is recommended
+4. To run production server, pm2 is recommended
 install pm2 `npm install pm2 -g`
 run `pm2 start pm2.json --env production` to start server
 
