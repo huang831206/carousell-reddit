@@ -1,0 +1,8 @@
+{
+    "queues" : {
+        "rabbitmq" : {
+            "name" : "vote_queue",
+            "host" : "amqp://localhost"
+        }
+    }
+}

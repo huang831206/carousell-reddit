@@ -24,6 +24,12 @@ app.ranker = new Ranker('top20', 20)
 var DB = require('./DB.js')
 app.db = new DB().use('memory')
 
+// setup the message queue for votes
+var MQ = require('./MessageQueue.js')
+app.mq = new MQ().use('rabbitmq')
+// setup message queue onReceive handler
+app.mq.onReceive(app.db, app.ranker)
+
 /*******/
 
 var routes = require('./routes/api.js')(app)
