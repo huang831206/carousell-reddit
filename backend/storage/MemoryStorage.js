@@ -46,8 +46,9 @@ class MemoryStorage extends BaseStorage{
     // raw: if ture, return the exact object in data map. by default this function returns clones
     selectIn(ids, raw = false){
         let results = []
-        this.data.forEach( (value, id) => {
-            if (ids.includes(id)) {
+        ids.forEach( id => {
+            if (this.data.has(id)) {
+                let value = this.data.get(id)
                 results.push(raw ? value : JSON.parse(JSON.stringify(value)))
             }
         })
@@ -68,6 +69,11 @@ class MemoryStorage extends BaseStorage{
     // delete a certain post
     delete(id){
         return this.data.delete(id)
+    }
+
+    // get the number of sotred posts
+    count(){
+        return this.data.size
     }
 
 }
