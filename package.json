@@ -4,7 +4,8 @@
     "description": "",
     "main": "app.js",
     "scripts": {
-        "test": "ava --verbose"
+        "test": "ava --verbose",
+        "start": "node backend/server.js"
     },
     "author": "Ben",
     "license": "ISC",
