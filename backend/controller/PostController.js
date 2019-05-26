@@ -11,4 +11,4 @@ post.vote = function (req, res) {
 post.create = function (req, res) {
     // create a new post
 }
-module.exports = home;
+module.exports = post;
