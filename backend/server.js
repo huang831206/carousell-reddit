@@ -14,6 +14,17 @@ app.use(cors({
 }));
 app.use(express.json())
 
+/*** hook services on express to provide to all requests ***/
+
+// setup a ranker of top 20
+var Ranker = require('./Ranker.js')
+app.ranker = new Ranker('top20', 20)
+
+// setup storage
+var DB = require('./DB.js')
+app.db = new DB().use('memory')
+
+/*******/
 
 var routes = require('./routes/api.js')(app)
 
