@@ -29,7 +29,7 @@
                 </span>
             </div>
             <div class="post-content">
-                <p>{{ decodeURIComponent(post.content) }}</p>
+                <p class="text-content">{{ decodeURIComponent(post.content) }}</p>
             </div>
         </div>
     </div>
@@ -165,6 +165,10 @@ export default {
             a{
                 text-decoration: none;
                 color: black;
+            }
+
+            p.text-content{
+                word-wrap: break-word;
             }
         }
     }
